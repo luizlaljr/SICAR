@@ -177,7 +177,12 @@ class Sicar(Url):
         Returns:
             None
         """
-        self._get(self._INDEX)
+        try:
+            response = self._get(self._INDEX, verify=False)
+            print(f"Cookies inicializados. Status: {response.status_code}")
+        except httpx.ConnectError as e:
+            print(f"Erro ao inicializar cookies: {e}")
+            raise
 
     def _get(self, url: str, *args, **kwargs):
         """
