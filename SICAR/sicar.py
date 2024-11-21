@@ -151,6 +151,7 @@ class Sicar(Url):
         timeout = httpx.Timeout(read_timeout, connect=connect_timeout)
         self._session = httpx.Client(
             verify=False,
+            trust_env=False,  # Ignora variáveis de ambiente que podem influenciar SSL
             transport=httpx.HTTPTransport(retries=retries),
             timeout=timeout,
             http2=use_http2,
