@@ -178,7 +178,7 @@ class Sicar(Url):
             None
         """
         try:
-            response = self._get(self._INDEX, verify=False)
+            response = self._get(self._INDEX)
             print(f"Cookies inicializados. Status: {response.status_code}")
         except httpx.ConnectError as e:
             print(f"Erro ao inicializar cookies: {e}")
