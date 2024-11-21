@@ -12,6 +12,7 @@ import os
 import time
 import random
 import httpx
+import logging
 from PIL import Image, UnidentifiedImageError
 from bs4 import BeautifulSoup
 from tqdm import tqdm
@@ -141,6 +142,12 @@ class Sicar(Url):
         Returns:
             None
         """
+
+        # Configuração de logging detalhado
+        httpx_logger = logging.getLogger("httpx")
+        httpx_logger.setLevel(logging.DEBUG)
+        logging.basicConfig(level=logging.DEBUG)
+        
         timeout = httpx.Timeout(read_timeout, connect=connect_timeout)
         self._session = httpx.Client(
             verify=False,
